@@ -1,0 +1,50 @@
+COL333 Assignment 2
+Game Playing AI Agent 
+
+Dhananjay Sapawat (2019CS10345)
+Pratik Nimbalkar (2020CS10607)
+
+Problem Description: 
+We have to implement an AI agent for playing a 2-player game and also to plan the game moves in presence of an adversary. 
+Our AI agent can play the game against a given random agent or another AI agent as well as any Human agent. 
+
+Our Implementation: 
+
+Against an adversarial agent:
+
+We have implemented minimax search and alpha beta pruning for our AI agent to play against an adversarial agent.
+In minimax search, the players can be called maximizer and minimizer with respect to any player. 
+For example, to improve the score of player 1, it should maximize its output (i.e. the maximizer) and player 2 should minimize its output (i.e. the minimizer).
+Every board state would have a value associated with it and the maximizer increases this value whereas the minimizer decreases it with respect to any 1 player. 
+We have formed 2 functions (min and max) which take the state of the player, a, b, depth of the minimax search and the number of pops available as input 
+(here a and b are the alpha, beta involved in pruning). They will output an array containing 2 values: one the value of the state and second the action by which we get this value. 
+For each action for a state, max will check the min of the next states we get using that particular action (given by Action function). 
+Similarly the min will check the max of the next state for each action for a state. 
+If depth becomes 0 or there are no valid actions, then they will return evaluation function value. 
+Moreover we have used alpha beta pruning to improve the time complexity of our minimax search. 
+
+Against a random agent:
+
+We have implemented an agent based on expectimax that can play against the random agent. The expectimax is used to maximize the expected utility, 
+it does not assume that the adversary plays optimally and since the random agents' actions are based on chance, implementing expectimax is the best option in this case. 
+The only difference between our expectimax implementation and our minimax implementation is that while the minimax has min function which returns the minimum from the opponent, 
+the expectimax would consider the average of the moves of the opponent instead of the min of the states of opponent. 
+The expectimax function behaves similar to the max function in minimax and the exectimin function gives the average of the states instead of min in the min function of minimax. 
+
+
+Helper functions description:
+
+For implementing minimax and expectimax, we have used some helper functions as well. Description of those is as follows:
+
+Nextplayer function: Will give the next player
+
+Evaluation function: This will give the evaluation value (i.e. an estimate of the true minimax value of that node) for any given state. 
+It would give the value of (gate points (state)) - (2*(get points(next player)) i.e. while looking at improving the players score, 
+our AI will also try to minimize the score of the opponent. 
+
+Action Function: This function will take the current state, action we take on that state and v as parameter and outputs the next state. Here v is the player number. 
+
+Moreover, we also have used Iterative deeping method in minimax search as well as expectimax search which will compute the best state till the time gets 
+fininshed. Here instead of using a fixed depth, we have allowed to check for better state more deeper till the time is over. 
+
+
